@@ -1,4 +1,4 @@
-Add initial schema structure for Users, Monitors, and Invoices
+# Add initial schema structure for Users, Monitors, and Invoices 
 
 - Defined basic table structures with relevant fields.
 - Included fields such as id, firstName, lastName, imageUrl, role, and Inventory for Users.
