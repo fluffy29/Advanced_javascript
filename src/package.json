@@ -1,0 +1,29 @@
+{
+  "name": "advanced_javascript",
+  "version": "1.0.0",
+  "description": "- Defined basic table structures with relevant fields.\r - Included fields such as id, firstName, lastName, imageUrl, role, and Inventory for Users.\r - Added brand, Model, images, stock, and price fields for Monitors.\r - Specified id, brand, model, images, stock, and Inventory fields for Invoices.\r - Using MongoDB and Node.js for database management and server-side logic.\r - Implementing a RESTful API with Express.js for handling HTTP requests and routing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fluffy29/Advanced_javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/fluffy29/Advanced_javascript/issues"
+  },
+  "homepage": "https://github.com/fluffy29/Advanced_javascript#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
