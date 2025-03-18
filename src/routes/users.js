@@ -3,22 +3,21 @@ const router = express.Router();
 const { hashPassword } = require("../middleware/passencrypt");
 
 router.get("/", (req, res) => {
-  const { firstName, email, password } = req.query;
-  res.json({ firstName, email, password });
+  res.send("Welcome to my API ! e-commerce backed :D");
 });
 
-router.post ("/", hashPassword, (req, res) => {
-  const { firstName, email, password } = req.body;
-  const hashedPassword = req.body.password;
+router.post("/", hashPassword, (req, res) => {
+  const { firstName, email } = req.body;
+  const hashedPassword = req.hashedPassword;
   res.json({
     firstName,
     email,
     hashedPassword,
-    _id: "randomId4567",
+    _id: "randomId1234",
   });
-
   console.log(firstName, email, password);
-  res.send("you have reached the post request !! ");
+
+  res.send("you have reached the post section!!");
 });
 
 module.exports = router;
