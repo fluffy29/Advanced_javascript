@@ -4,7 +4,22 @@ const port = process.env.PORT || 3000;
 
 const userRoutes = require("./routes/users");
 
+const connectDB = require("./utils/db");
+const { connect } = require("mongoose");
+
 app.use(express.json());
+
+// CORS middleware
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  next();
+});
+
+connectDB();
 
 app.use((req, res, next) => {
   console.log("Time:", Date.now());
