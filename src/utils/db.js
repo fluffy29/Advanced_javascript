@@ -1,15 +1,20 @@
-const mongoose = require("mongoose");
-const dontenv = require("dotenv");
-dontenv.config();
+import { set, connect } from "mongoose";
+import { config } from "dotenv";
 
-const mongoConnection =
-  "mongodb+srv://fluffy:Acsdoha2023@cluster0.dhjdy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+config();
 
-mongoose.set("strictQuery", true);
+const uri =
+  process.env.NODE_ENV === "dev"
+    ? process.env.LOCAL_DB_CONNECTION
+    : process.env.DB_CONNECTION;
+
+const mongoConnection = uri;
+
+set("strictQuery", true);
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(mongoConnection);
+    await connect(mongoConnection);
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("No DB connection!", error);
@@ -17,6 +22,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
-
-
+export default connectDB;

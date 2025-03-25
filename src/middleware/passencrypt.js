@@ -1,13 +1,12 @@
-const bcrypt = require('bcryptjs');
+import bcrypt from "bcrypt";
 const saltRounds = 10;
 
-exports.hashPassword = async (req, res, next) => {
-    bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-        if (err) {
-            return next(err);
-        }
-        req.body.password = hash;
-        console.log("your hashed password", hash);
-        next();
-    });
-}
+const hashPassword = (req, res, next) => {
+  bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+    req.hashedPassword = hash;
+    console.log("your hashed password", hash);
+    next();
+  });
+};
+
+export default hashPassword;

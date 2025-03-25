@@ -1,9 +1,9 @@
-node_modules/
-
-.env
-.env.test
-.env.production
+src/node_modules/
  
-/dist
-/build
-/out
+src/.env
+src/.env.test
+src/.env.production
+ 
+src/dist
+src/build
+src/out
