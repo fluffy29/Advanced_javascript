@@ -1,23 +1,31 @@
-const express = require("express");
-const router = express.Router();
-const { hashPassword } = require("../middleware/passencrypt");
+import { Router } from "express";
+import { userLogIn, userSignUp } from "../controllers/userControllers.js";
+import { verifyToken } from "../middleware/auth.js";
+import upload from "../middleware/multerConfig.js";
+import sharpMiddleware from "../middleware/sharpMiddleware.js";
+const router = Router();
 
-router.get("/", (req, res) => {
-  res.send("Welcome to my API ! e-commerce backed :D");
-});
+router.post("/login", userLogIn);
 
-router.post("/", hashPassword, (req, res) => {
-  const { firstName, email } = req.body;
-  const hashedPassword = req.hashedPassword;
-  res.json({
-    firstName,
-    email,
-    hashedPassword,
-    _id: "randomId1234",
-  });
-  console.log(firstName, email, password);
+router.post("/signup", userSignUp);
 
-  res.send("you have reached the post section!!");
-});
-
-module.exports = router;
+router.put(
+  "/updateUser",
+  verifyToken,
+  upload.single("image"),
+  sharpMiddleware(),
+  (req, res) => {
+    if (!req.file) {
+      return res
+        .status(400)
+        .json({ error: "There seems an error uploading it? " });
+    }
+    console.log(req.body);
+    console.log(req.file);
+    console.log(req.userId);
+    const fileUrl =
+      req.protocol + "://" + req.get("host") + "/" + req.file.processedPath;
+    res.json({ message: "User response reached", fileUrl });
+  }
+);
+export default router;
