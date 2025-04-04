@@ -31,7 +31,7 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 connectDB();
 
-app.use("/api/users", router);
+app.use("/api", router);
 
 app.get("/", (req, res) => {
   res.send("Welcome to my API!! my silly api!");

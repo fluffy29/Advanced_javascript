@@ -1,5 +1,4 @@
-import userModel from "../models/userModels.js";
-const { User } = userModel;
+import User from "../models/userModels.js";
 import jwt from "jsonwebtoken";
 import { config } from "dotenv";
 import { compare } from "bcrypt";
@@ -31,13 +30,13 @@ export const userLogIn = async (req, res) => {
 
     res.status(200).send(token);
   } catch (error) {
-    res.status(401).json({ message: "Invalid credentials" });
+    res.status(401).json({ message: "credentials are not there!!" });
   }
 };
 
 export const userSignUp = async (req, res) => {
   try {
-    const { firstName, email, lastName, imageUrl, role, inventory } = req.body;
+    const { firstName, lastName, email, role, imageUrl, inventory } = req.body;
     const hashedPassword = req.hashedPassword;
 
     const newUser = new User({
